@@ -1,0 +1,15 @@
+                     model      strategy  ... rouge1_precision rougeL_precision
+0  claude-3-haiku-20240307  Storytelling  ...         0.126168         0.074766
+1              gpt-4o-mini  Storytelling  ...         0.239130         0.152174
+2  claude-3-haiku-20240307  Storytelling  ...         0.214286         0.119048
+3              gpt-4o-mini  Storytelling  ...         0.250000         0.125000
+
+[4 rows x 9 columns]
+Claude-3-Haiku-20240307 Average Scores:
+rouge1_precision    0.170227
+rougeL_precision    0.096907
+dtype: float64
+GPT-4o-Mini Average Scores:
+rouge1_precision    0.244565
+rougeL_precision    0.138587
+dtype: float64

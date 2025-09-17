@@ -1,0 +1,57 @@
+                      model      strategy  ... rouge1_precision rougeL_precision
+0   claude-3-haiku-20240307  Storytelling  ...         0.214286         0.113095
+1               gpt-4o-mini  Storytelling  ...         0.250000         0.159091
+2   claude-3-haiku-20240307  Storytelling  ...         0.214286         0.116883
+3               gpt-4o-mini  Storytelling  ...         0.285714         0.214286
+4   claude-3-haiku-20240307  Storytelling  ...         0.183333         0.105556
+5               gpt-4o-mini  Storytelling  ...         0.305556         0.194444
+6   claude-3-haiku-20240307  Storytelling  ...         0.218750         0.118750
+7               gpt-4o-mini  Storytelling  ...         0.328947         0.197368
+8   claude-3-haiku-20240307  Storytelling  ...         0.174129         0.104478
+9               gpt-4o-mini  Storytelling  ...         0.296296         0.222222
+10  claude-3-haiku-20240307  Storytelling  ...         0.185430         0.112583
+11              gpt-4o-mini  Storytelling  ...         0.210526         0.157895
+12  claude-3-haiku-20240307  Storytelling  ...         0.200000         0.112195
+13              gpt-4o-mini  Storytelling  ...         0.272727         0.145455
+14  claude-3-haiku-20240307  Storytelling  ...         0.215278         0.138889
+15              gpt-4o-mini  Storytelling  ...         0.344828         0.241379
+16  claude-3-haiku-20240307  Storytelling  ...         0.216374         0.111111
+17              gpt-4o-mini  Storytelling  ...         0.333333         0.233333
+18  claude-3-haiku-20240307  Storytelling  ...         0.219388         0.102041
+19              gpt-4o-mini  Storytelling  ...         0.322581         0.193548
+20  claude-3-haiku-20240307  Storytelling  ...         0.202970         0.099010
+21              gpt-4o-mini  Storytelling  ...         0.307692         0.153846
+22  claude-3-haiku-20240307  Storytelling  ...         0.250000         0.125000
+23              gpt-4o-mini  Storytelling  ...         0.250000         0.214286
+24  claude-3-haiku-20240307  Storytelling  ...         0.228571         0.120000
+25              gpt-4o-mini  Storytelling  ...         0.303030         0.181818
+26  claude-3-haiku-20240307  Storytelling  ...         0.193548         0.103226
+27              gpt-4o-mini  Storytelling  ...         0.351351         0.189189
+28  claude-3-haiku-20240307  Storytelling  ...         0.244565         0.141304
+29              gpt-4o-mini  Storytelling  ...         0.314815         0.166667
+30  claude-3-haiku-20240307  Storytelling  ...         0.188679         0.103774
+31              gpt-4o-mini  Storytelling  ...         0.261905         0.166667
+32  claude-3-haiku-20240307  Storytelling  ...         0.164319         0.093897
+33              gpt-4o-mini  Storytelling  ...         0.305263         0.178947
+34  claude-3-haiku-20240307  Storytelling  ...         0.174863         0.120219
+35              gpt-4o-mini  Storytelling  ...         0.312500         0.218750
+36  claude-3-haiku-20240307  Storytelling  ...         0.210191         0.127389
+37              gpt-4o-mini  Storytelling  ...         0.236842         0.184211
+38  claude-3-haiku-20240307  Storytelling  ...         0.209677         0.107527
+39              gpt-4o-mini  Storytelling  ...         0.294118         0.176471
+40  claude-3-haiku-20240307  Storytelling  ...         0.211429         0.102857
+41              gpt-4o-mini  Storytelling  ...         0.285714         0.214286
+42  claude-3-haiku-20240307  Storytelling  ...         0.198953         0.115183
+43              gpt-4o-mini  Storytelling  ...         0.325000         0.200000
+44  claude-3-haiku-20240307  Storytelling  ...         0.229412         0.129412
+45              gpt-4o-mini  Storytelling  ...         0.189189         0.162162
+
+[46 rows x 9 columns]
+Claude-3-Haiku-20240307 Average Scores:
+rouge1_precision    0.206454
+rougeL_precision    0.114103
+dtype: float64
+GPT-4o-Mini Average Scores:
+rouge1_precision    0.29078
+rougeL_precision    0.18984
+dtype: float64

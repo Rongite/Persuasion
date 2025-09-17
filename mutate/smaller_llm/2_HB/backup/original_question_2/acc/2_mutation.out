@@ -1,0 +1,35 @@
+                      model  ... rougeL_precision
+0   claude-3-haiku-20240307  ...         0.200000
+1               gpt-4o-mini  ...         0.184211
+2   claude-3-haiku-20240307  ...         0.122302
+3               gpt-4o-mini  ...         0.190476
+4   claude-3-haiku-20240307  ...         0.574163
+5               gpt-4o-mini  ...         0.210526
+6   claude-3-haiku-20240307  ...         0.648649
+7               gpt-4o-mini  ...         0.181818
+8   claude-3-haiku-20240307  ...         0.166667
+9               gpt-4o-mini  ...         0.722222
+10  claude-3-haiku-20240307  ...         0.148148
+11              gpt-4o-mini  ...         0.200000
+12  claude-3-haiku-20240307  ...         0.528634
+13              gpt-4o-mini  ...         0.133333
+14  claude-3-haiku-20240307  ...         0.117647
+15              gpt-4o-mini  ...         0.200000
+16  claude-3-haiku-20240307  ...         0.566038
+17              gpt-4o-mini  ...         0.173913
+18  claude-3-haiku-20240307  ...         0.716216
+19              gpt-4o-mini  ...         0.288136
+20  claude-3-haiku-20240307  ...         0.116788
+21              gpt-4o-mini  ...         0.173913
+22  claude-3-haiku-20240307  ...         0.120370
+23              gpt-4o-mini  ...         0.175000
+
+[24 rows x 9 columns]
+Claude-3-Haiku-20240307 Average Scores:
+rouge1_precision    0.395704
+rougeL_precision    0.335469
+dtype: float64
+GPT-4o-Mini Average Scores:
+rouge1_precision    0.318186
+rougeL_precision    0.236129
+dtype: float64

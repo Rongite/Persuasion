@@ -1,0 +1,25 @@
+                      model     strategy  ... rouge1_precision rougeL_precision
+0   claude-3-haiku-20240307  Negotiation  ...         0.140449         0.078652
+1               gpt-4o-mini  Negotiation  ...         0.275862         0.206897
+2   claude-3-haiku-20240307  Negotiation  ...         0.197080         0.094891
+3               gpt-4o-mini  Negotiation  ...         0.289474         0.184211
+4   claude-3-haiku-20240307  Negotiation  ...         0.215517         0.129310
+5               gpt-4o-mini  Negotiation  ...         0.186047         0.116279
+6   claude-3-haiku-20240307  Negotiation  ...         0.146552         0.090517
+7               gpt-4o-mini  Negotiation  ...         0.200000         0.133333
+8   claude-3-haiku-20240307  Negotiation  ...         0.177778         0.096296
+9               gpt-4o-mini  Negotiation  ...         0.265306         0.183673
+10  claude-3-haiku-20240307  Negotiation  ...         0.176471         0.110294
+11              gpt-4o-mini  Negotiation  ...         0.179487         0.128205
+12  claude-3-haiku-20240307  Negotiation  ...         0.200000         0.105882
+13              gpt-4o-mini  Negotiation  ...         0.200000         0.175000
+
+[14 rows x 9 columns]
+Claude-3-Haiku-20240307 Average Scores:
+rouge1_precision    0.179121
+rougeL_precision    0.100835
+dtype: float64
+GPT-4o-Mini Average Scores:
+rouge1_precision    0.228025
+rougeL_precision    0.161085
+dtype: float64

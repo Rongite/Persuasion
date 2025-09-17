@@ -1,0 +1,71 @@
+                      model       strategy  ... rouge1_precision rougeL_precision
+0   claude-3-haiku-20240307  Encouragement  ...         0.184100         0.092050
+1               gpt-4o-mini  Encouragement  ...         0.294118         0.147059
+2   claude-3-haiku-20240307  Encouragement  ...         0.230769         0.124260
+3               gpt-4o-mini  Encouragement  ...         0.250000         0.125000
+4   claude-3-haiku-20240307  Encouragement  ...         0.181818         0.084416
+5               gpt-4o-mini  Encouragement  ...         0.285714         0.171429
+6   claude-3-haiku-20240307  Encouragement  ...         0.193939         0.084848
+7               gpt-4o-mini  Encouragement  ...         0.294118         0.117647
+8   claude-3-haiku-20240307  Encouragement  ...         0.233333         0.113333
+9               gpt-4o-mini  Encouragement  ...         0.277778         0.166667
+10  claude-3-haiku-20240307  Encouragement  ...         0.195876         0.077320
+11              gpt-4o-mini  Encouragement  ...         0.312500         0.156250
+12  claude-3-haiku-20240307  Encouragement  ...         0.167665         0.077844
+13              gpt-4o-mini  Encouragement  ...         0.258065         0.161290
+14  claude-3-haiku-20240307  Encouragement  ...         0.204301         0.086022
+15              gpt-4o-mini  Encouragement  ...         0.272727         0.113636
+16  claude-3-haiku-20240307  Encouragement  ...         0.202128         0.106383
+17              gpt-4o-mini  Encouragement  ...         0.228571         0.114286
+18  claude-3-haiku-20240307  Encouragement  ...         0.187500         0.073864
+19              gpt-4o-mini  Encouragement  ...         0.250000         0.138889
+20  claude-3-haiku-20240307  Encouragement  ...         0.206667         0.086667
+21              gpt-4o-mini  Encouragement  ...         0.285714         0.142857
+22  claude-3-haiku-20240307  Encouragement  ...         0.212500         0.100000
+23              gpt-4o-mini  Encouragement  ...         0.257143         0.142857
+24  claude-3-haiku-20240307  Encouragement  ...         0.193277         0.092437
+25              gpt-4o-mini  Encouragement  ...         0.269231         0.153846
+26  claude-3-haiku-20240307  Encouragement  ...         0.226190         0.119048
+27              gpt-4o-mini  Encouragement  ...         0.279070         0.139535
+28  claude-3-haiku-20240307  Encouragement  ...         0.181208         0.087248
+29              gpt-4o-mini  Encouragement  ...         0.285714         0.142857
+30  claude-3-haiku-20240307  Encouragement  ...         0.197080         0.094891
+31              gpt-4o-mini  Encouragement  ...         0.285714         0.142857
+32  claude-3-haiku-20240307  Encouragement  ...         0.250000         0.160714
+33              gpt-4o-mini  Encouragement  ...         0.307692         0.179487
+34  claude-3-haiku-20240307  Encouragement  ...         0.157576         0.078788
+35              gpt-4o-mini  Encouragement  ...         0.294118         0.147059
+36  claude-3-haiku-20240307  Encouragement  ...         0.165775         0.090909
+37              gpt-4o-mini  Encouragement  ...         0.250000         0.138889
+38  claude-3-haiku-20240307  Encouragement  ...         0.136126         0.083770
+39              gpt-4o-mini  Encouragement  ...         0.261905         0.166667
+40  claude-3-haiku-20240307  Encouragement  ...         0.203883         0.106796
+41              gpt-4o-mini  Encouragement  ...         0.314286         0.171429
+42  claude-3-haiku-20240307  Encouragement  ...         0.192771         0.090361
+43              gpt-4o-mini  Encouragement  ...         0.266667         0.133333
+44  claude-3-haiku-20240307  Encouragement  ...         0.168224         0.084112
+45              gpt-4o-mini  Encouragement  ...         0.333333         0.179487
+46  claude-3-haiku-20240307  Encouragement  ...         0.170984         0.093264
+47              gpt-4o-mini  Encouragement  ...         0.171429         0.085714
+48  claude-3-haiku-20240307  Encouragement  ...         0.151020         0.110204
+49              gpt-4o-mini  Encouragement  ...         0.225490         0.127451
+50  claude-3-haiku-20240307  Encouragement  ...         0.193798         0.093023
+51              gpt-4o-mini  Encouragement  ...         0.228571         0.142857
+52  claude-3-haiku-20240307  Encouragement  ...         0.173184         0.078212
+53              gpt-4o-mini  Encouragement  ...         0.295455         0.113636
+54  claude-3-haiku-20240307  Encouragement  ...         0.257576         0.189394
+55              gpt-4o-mini  Encouragement  ...         0.225000         0.100000
+56  claude-3-haiku-20240307  Encouragement  ...         0.226950         0.085106
+57              gpt-4o-mini  Encouragement  ...         0.250000         0.125000
+58  claude-3-haiku-20240307  Encouragement  ...         0.186441         0.084746
+59              gpt-4o-mini  Encouragement  ...         0.312500         0.156250
+
+[60 rows x 9 columns]
+Claude-3-Haiku-20240307 Average Scores:
+rouge1_precision    0.194422
+rougeL_precision    0.097668
+dtype: float64
+GPT-4o-Mini Average Scores:
+rouge1_precision    0.270754
+rougeL_precision    0.141474
+dtype: float64

@@ -1,0 +1,47 @@
+                      model  ... rougeL_precision
+0   claude-3-haiku-20240307  ...         0.082707
+1               gpt-4o-mini  ...         0.145455
+2   claude-3-haiku-20240307  ...         0.109890
+3               gpt-4o-mini  ...         0.151515
+4   claude-3-haiku-20240307  ...         0.097826
+5               gpt-4o-mini  ...         0.166667
+6   claude-3-haiku-20240307  ...         0.120690
+7               gpt-4o-mini  ...         0.142857
+8   claude-3-haiku-20240307  ...         0.082645
+9               gpt-4o-mini  ...         0.142857
+10  claude-3-haiku-20240307  ...         0.690789
+11              gpt-4o-mini  ...         0.142857
+12  claude-3-haiku-20240307  ...         0.092437
+13              gpt-4o-mini  ...         0.119048
+14  claude-3-haiku-20240307  ...         0.101562
+15              gpt-4o-mini  ...         0.125000
+16  claude-3-haiku-20240307  ...         0.105263
+17              gpt-4o-mini  ...         0.135135
+18  claude-3-haiku-20240307  ...         0.077922
+19              gpt-4o-mini  ...         0.128205
+20  claude-3-haiku-20240307  ...         0.085938
+21              gpt-4o-mini  ...         0.142857
+22  claude-3-haiku-20240307  ...         0.139785
+23              gpt-4o-mini  ...         0.142857
+24  claude-3-haiku-20240307  ...         0.114943
+25              gpt-4o-mini  ...         0.122449
+26  claude-3-haiku-20240307  ...         0.100000
+27              gpt-4o-mini  ...         0.114286
+28  claude-3-haiku-20240307  ...         0.097744
+29              gpt-4o-mini  ...         0.135135
+30  claude-3-haiku-20240307  ...         0.096491
+31              gpt-4o-mini  ...         0.119403
+32  claude-3-haiku-20240307  ...         0.546875
+33              gpt-4o-mini  ...         0.142857
+34  claude-3-haiku-20240307  ...         0.091743
+35              gpt-4o-mini  ...         0.189189
+
+[36 rows x 9 columns]
+Claude-3-Haiku-20240307 Average Scores:
+rouge1_precision    0.247803
+rougeL_precision    0.157514
+dtype: float64
+GPT-4o-Mini Average Scores:
+rouge1_precision    0.279440
+rougeL_precision    0.139368
+dtype: float64
