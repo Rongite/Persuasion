@@ -49,39 +49,31 @@ Look for `TODO` comments in the code indicating where to add your API credential
 
 ## Core Components
 
-### 1. Persuasion Strategy Templates (22 Techniques)
+### 1. Persuasion Strategy Templates (14 Techniques)
 
-Our framework uses **22 persuasion techniques** divided into categories:
+Our framework uses **14 persuasion techniques** tested in the study, divided into categories:
 
-**Psychological Techniques:**
+**Appeals to Credibility and Relationships:**
 - **Ethos**: Establishing credibility and authority
-- **Pathos**: Evoking emotions to persuade
-- **Logos**: Using facts, data, and logical arguments
-- **Storytelling**: Sharing personal or impactful stories that resonate emotionally
-- **Affirmation**: Help others realize their strength to reinforce their ability
-- **Encouragement**: Increase others' confidence and self-efficacy
-
-**Social Influence:**
 - **Alliance Building**: Creating partnerships and coalitions with others
 - **Relationship Leverages**: Reminding someone of past positive interactions
 - **Loyalty Appeals**: Highlighting shared history or commitment
-- **Social Needs**: Fostering a sense of belonging
-- **Negotiation**: Trade favors or resources for mutual benefit
-- **Reciprocity**: Adapt to individual's arguments or linguistic styles
+- **Affirmation**: Help others realize their strength to reinforce their ability
 
-**Motivational Techniques:**
+**Logical Appeals:**
+- **Logos**: Using facts, data, and logical arguments
+- **Negotiation**: Trade favors or resources for mutual benefit
+
+**Emotional Appeals:**
+- **Pathos**: Evoking emotions to persuade
+- **Storytelling**: Sharing personal or impactful stories that resonate emotionally
+- **Encouragement**: Increase others' confidence and self-efficacy
 - **Positive Motivation**: Highlighting benefits and rewards
 - **Negative Motivation**: Highlighting risks and consequences
 - **Safety Needs**: Ensuring security and protection
-- **Self-Esteem Needs**: Promoting feelings of respect and value
-- **Time Pressure**: Giving limited time for decisions
 
 **Compliance Techniques:**
 - **Foot-in-the-Door**: Starting with small requests to gain larger compliance
-- **Door-in-the-Face**: Beginning with larger requests followed by smaller ones
-- **Cognitive Dissonance**: Highlighting inconsistencies to motivate change
-- **Confirmation Bias**: Presenting information that confirms existing beliefs
-- **Priming**: Using subtle cues and stimuli to influence attitudes and behaviors
 
 **Template Files:**
 - `outputs/1_persuasion_technique_template/correct_persuasion_framework_final.json` (zero-shot)
@@ -282,34 +274,18 @@ If experiments are interrupted:
 
 ## Citation
 
-If you use this code, please cite our ACL 2025 paper:
+If you find it useful, please cite our EMNLP 2025 paper:
 
 ```bibtex
-@inproceedings{anonymous2025persuasion,
-  title={Persuasion-based Prompt Attacks: A Workflow for LLM Copyright Violation Assessment},
-  author={Anonymous},
-  booktitle={Proceedings of the 63rd Annual Meeting of the Association for Computational Linguistics},
-  year={2025}
+@inproceedings{LongLCXLXZZ25,
+  author    = {Jikai Long and
+               Ming Liu and
+               Xiusi Chen and
+               Jialiang Xu and
+               Shenglan Li and
+               Zhaozhuo Xu and
+               Denghui Zhang},
+  title     = {Persuasion-based Prompt Attacks: A Workflow for {LLM} Copyright Violation Assessment},
+  booktitle = {Findings of the Association for Computational Linguistics: {EMNLP} 2025}
 }
 ```
-
-## Ethical Considerations
-
-This research framework is designed for:
-- **Academic research** into LLM safety and robustness
-- **Copyright protection** assessment and defense development
-- **Red team evaluation** of model vulnerabilities
-
-**Please ensure:**
-- Compliance with all applicable laws and regulations
-- Respect for intellectual property rights
-- Responsible disclosure of any discovered vulnerabilities
-- Adherence to API provider terms of service
-
-## License
-
-This code is provided for research purposes only. The authors are not responsible for any misuse of this framework. Users must ensure compliance with all applicable laws and the terms of service of API providers.
-
-## Contact
-
-For questions about the code or paper, please contact the authors through the conference submission system or create an issue in this repository.
