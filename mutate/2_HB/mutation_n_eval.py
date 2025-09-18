@@ -13,20 +13,19 @@ import logging
 
 # Initialize OpenAI, Anthropic, and Replicate clients
 openai_client = OpenAI(
-    api_key = 'sk-eYvV5PulUcRh5gX40d10873c274b41C3B596F4F1F06e1a34', # office
-    # api_key = 'sk-eWSYPo0CvhRYgcJs55B0C3F00aC74f6e95F47c1f4772292c', # my
-    base_url = "https://api2.aigcbest.top/v1"
+    # TODO: Add your OpenAI API key here
+    # api_key="your_openai_api_key_here",
+    # TODO: Add your base URL here if using a different endpoint
+    # base_url="your_base_url_here"
 )
 
 # Load the persuasion template from the JSON file
-with open('/home/jlong1/Downloads/persuasion/Data_n_Code_persuasion/jikailoong/1_persuasion_technique_template/correct_persuasion_framework_final.json', 'r') as file:
+with open('./outputs/1_persuasion_technique_template/correct_persuasion_framework_final.json', 'r') as file:
     persuasion_template = json.load(file)
 
 # Define output CSV file for technique progress
-'''
-modify
-'''
-technique_progress = '/home/jlong1/Downloads/persuasion/Data_n_Code_persuasion/single_mutations/1_HP/technique_progress.csv'
+# Configuration section
+technique_progress = './mutate/1_HP/technique_progress.csv'
 
 # Function to save evaluation data incrementally to a CSV file (Checkpointing)
 def save_incremental_results(evaluation_data, checkpoint_file):
@@ -39,11 +38,9 @@ def save_incremental_results(evaluation_data, checkpoint_file):
 # Main function to handle mutation and filtering process for all strategies
 def generate_mutations_with_intention_check_all_strategies(original_questions):
     results = []
+# Configuration section
     '''
-    modify
-    '''
-    '''
-    save_file = '/home/jlong1/Downloads/persuasion/Data_n_Code_persuasion/jikailoong/2_persuasion_prompts/1_HP/Ethos/6_single_mutations_with_gpt4o_judgements_best_strategies_extract_HP_FT.csv'
+    save_file = './outputs/2_persuasion_prompts/1_HP/Ethos/6_mutate_with_gpt4o_judgements_best_strategies_extract_HP_FT.csv'
 
     # Initialize CSV file
     save_to_csv(save_file, [], append=False)  # Create and write the header
@@ -72,9 +69,7 @@ def generate_mutations_with_intention_check_all_strategies(original_questions):
                 question_progress = 5 - zero_count
     # Iterate over each strategy in the persuasion template
     for strategy in persuasion_template.keys():
-        '''
-        modify
-        '''
+# Configuration section
         if strategy == "Ethos" or strategy == "Alliance Building": # deletion
             continue # deletion
 

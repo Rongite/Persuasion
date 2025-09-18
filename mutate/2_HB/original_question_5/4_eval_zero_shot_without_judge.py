@@ -17,27 +17,24 @@ parser.add_argument('--technique', type=str, help='select the technique')
 args = parser.parse_args()
 
 # Load valid mutations from the CSV file
-'''
-modify
-'''
-valid_mutations_file = f"""/home/jlong1/Downloads/persuasion/Data_n_Code_persuasion/jikailoong/2_persuasion_prompts/{args.book}/{args.technique_dir}/5_zero_shot_with_no_judge.csv"""
+# Configuration section
+valid_mutations_file = f"""./outputs/2_persuasion_prompts/{args.book}/{args.technique_dir}/5_zero_shot_with_no_judge.csv"""
 valid_mutations_df = pd.read_csv(valid_mutations_file)
 
 # Initialize OpenAI, Anthropic, and Replicate clients
 openai_client = OpenAI(
-    # api_key = 'sk-eYvV5PulUcRh5gX40d10873c274b41C3B596F4F1F06e1a34', # office
-    api_key = 'sk-eWSYPo0CvhRYgcJs55B0C3F00aC74f6e95F47c1f4772292c', # my
-    base_url = "https://api2.aigcbest.top/v1"
+    # TODO: Add your OpenAI API key here
+    # api_key="your_openai_api_key_here",
+    # TODO: Add your base URL here if using a different endpoint
+    # base_url="your_base_url_here"
 )
 
-evaluation_directory = f"""/home/jlong1/Downloads/persuasion/Data_n_Code_persuasion/jikailoong/3_evaluation_results/{args.book}/{args.technique_dir}"""
+evaluation_directory = f"""./outputs/3_evaluation_results/{args.book}/{args.technique_dir}"""
 if not os.path.exists(evaluation_directory):
     # If it does not exist, create it
     os.makedirs(evaluation_directory)
-'''
-modify
-'''
-checkpoint_file = f"""/home/jlong1/Downloads/persuasion/Data_n_Code_persuasion/jikailoong/3_evaluation_results/{args.book}/{args.technique_dir}/5_eval_zero_shot_with_no_judge.csv"""
+# Configuration section
+checkpoint_file = f"""./outputs/3_evaluation_results/{args.book}/{args.technique_dir}/5_eval_zero_shot_with_no_judge.csv"""
 
 # Function to evaluate a mutated text against the reference answer using `rouge-score`
 def evaluate_rouge(generated_text, reference_answer):

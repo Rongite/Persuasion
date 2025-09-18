@@ -16,25 +16,25 @@ args = parser.parse_args()
 '''
 The first 4 experiment: data processing
 '''
-# 1. 将四种数据分别集中起来得到四个dataframe
+# 1. Merge the four types of data separately to get four dataframes
 def merge_csv_files(directory, keyword):
-    # 初始化一个空的 DataFrame
+    # Initialize an empty DataFrame
     combined_df = pd.DataFrame()
     
-    # 遍历目录中的所有文件
+    # Iterate through all files in the directory
     for filename in os.listdir(directory):
-        # 检查文件名是否包含特定字段并且是 CSV 文件
+        # Check if the filename contains specific keyword and is a CSV file
         if keyword in filename and filename.endswith('.csv'):
-            # 构建文件的完整路径
+            # Build the complete file path
             file_path = os.path.join(directory, filename)
-            # 读取 CSV 文件
+            # Read the CSV file
             df = pd.read_csv(file_path)
-            # 将读取的数据追加到合并的 DataFrame 中
+            # Append the read data to the merged DataFrame
             combined_df = pd.concat([combined_df, df], ignore_index=True)
     
     return combined_df
 
-eval_data_dir = f"/home/jlong1/Downloads/persuasion/Data_n_Code_persuasion/jikailoong/3_evaluation_results/{args.book}/{args.technique_dir}"
+eval_data_dir = f"./outputs/3_evaluation_results/{args.book}/{args.technique_dir}"
 zero_shot_with_judge = "zero_shot_with_judge"
 zero_shot_with_no_judge = "zero_shot_with_no_judge"
 few_shots_with_judge = "few_shots_with_judge"
@@ -45,19 +45,19 @@ zero_shot_with_no_judge_df = merge_csv_files(eval_data_dir, zero_shot_with_no_ju
 few_shots_with_judge_df = merge_csv_files(eval_data_dir, few_shots_with_judge)
 few_shots_with_no_judge_df = merge_csv_files(eval_data_dir, few_shots_with_no_judge)
 
-# 2. 将这四个dataframe按照模型类别各自分成两个dataframe，目前有4×2个dataframe
+# 2. Split these four dataframes by model category into two dataframes each, currently there are 4×2 dataframes
 def split_dataframe_by_model(df):
-    # 假设 'model' 列的值在奇数行和偶数行中分别一致
-    # 获取第一个模型的名称（位于第一个数据行，即索引 0）
+    # Assume the 'model' column values are consistent in odd and even rows respectively
+    # Get the name of the first model (located in the first data row, i.e., index 0)
     model1 = df.iloc[0]['model']
     
-    # 创建两个空的 DataFrame 用于存储分割后的数据
+    # Create two empty DataFrames to store the split data
     df_model1 = pd.DataFrame(columns=df.columns)
     df_model2 = pd.DataFrame(columns=df.columns)
     
-    # 遍历 DataFrame 中的行
+    # Iterate through the rows in the DataFrame
     for index, row in df.iterrows():
-        # 根据行索引的奇偶性分配到不同的 DataFrame
+        # Assign to different DataFrames based on odd/even row indices
         if index % 2 == 0:
             df_model1 = pd.concat([df_model1, pd.DataFrame([row])], ignore_index=True)
         else:
@@ -70,16 +70,16 @@ zero_shot_with_no_judge_df_for_claude, zero_shot_with_no_judge_df_for_gpt = spli
 few_shots_with_judge_df_for_claude, few_shots_with_judge_df_for_gpt = split_dataframe_by_model(few_shots_with_judge_df)
 few_shots_with_no_judge_df_for_claude, few_shots_with_no_judge_df_for_gpt = split_dataframe_by_model(few_shots_with_no_judge_df)
 
-# 3. 将每种数据对应的两个dataframe按相同的索引分别随机抽取出60，50，40，30，20，10个数据,得到4×2×6个dataframe（8个df list）
+# 3. Randomly sample 60, 50, 40, 30, 20, 10 data points from the two dataframes corresponding to each data type using the same indices, resulting in 4×2×6 dataframes (8 df lists)
 
 def sample_same_rows_sorted_index(df1, df2, num_rows):
-    # 确保两个DataFrame行数相同
+    # Ensure both DataFrames have the same number of rows
     assert len(df1) == len(df2), "DataFrames should have the same number of rows"
     
-    # 生成随机样本的索引，并对索引进行排序
+    # Generate random sample indices and sort the indices
     sample_indices = df1.sample(n=num_rows, random_state=42).index.sort_values()
     
-    # 根据排序后的索引从两个DataFrame中获取行，并重置索引
+    # Extract rows from both DataFrames based on sorted indices and reset the index
     sampled_df1 = df1.loc[sample_indices].reset_index(drop=True)
     sampled_df2 = df2.loc[sample_indices].reset_index(drop=True)
     
@@ -105,7 +105,7 @@ few_shots_with_no_judge_df_list_for_claude, few_shots_with_no_judge_df_list_for_
 '''
 The first 4 experiment: data statistics
 '''
-# # 1. 将每个dataframe list输入函数，得到每个dataframe的平均值，最大值，最小值，中位数，上四分卫数，下四分位数，以及箱线图（箱线图要体现平均数，和original rouge score）
+# # 1. Input each dataframe list into the function to obtain mean, maximum, minimum, median, upper quartile, lower quartile, and box plots for each dataframe (box plots should display the mean and original rouge score)
 # def save_table_as_image(df, filename, title, column_name):
 #     """
 #     Save a DataFrame as an image file with clearly labeled headers for statistics, including a title and column name.
@@ -252,7 +252,7 @@ def generate_statistics_and_plots(df_list, names_list, cols, output_dir, titles,
 sample_size_list = ["60", "50", "40", "30", "20", "10"]
 cols = ['rouge1_precision', 'rougeL_precision']
 
-zero_shot_with_judge_output_dir = f"/home/jlong1/Downloads/persuasion/Data_n_Code_persuasion/jikailoong/3_evaluation_results/{args.book}/{args.technique_dir}/statistical_report/zero_shot_with_judge"
+zero_shot_with_judge_output_dir = f"./outputs/3_evaluation_results/{args.book}/{args.technique_dir}/statistical_report/zero_shot_with_judge"
 if not os.path.exists(zero_shot_with_judge_output_dir):
     # If it does not exist, create it
     os.makedirs(zero_shot_with_judge_output_dir)
@@ -261,7 +261,7 @@ generate_statistics_and_plots(zero_shot_with_judge_df_list_for_claude, sample_si
 titles_1_2 = ['GPT-4o-mini - zero_shot_with_judge', 'GPT-4o-mini - zero_shot_with_judge']
 generate_statistics_and_plots(zero_shot_with_judge_df_list_for_gpt, sample_size_list, cols, zero_shot_with_judge_output_dir, titles_1_2)
 
-zero_shot_with_no_judge_output_dir = f"/home/jlong1/Downloads/persuasion/Data_n_Code_persuasion/jikailoong/3_evaluation_results/{args.book}/{args.technique_dir}/statistical_report/zero_shot_with_no_judge"
+zero_shot_with_no_judge_output_dir = f"./outputs/3_evaluation_results/{args.book}/{args.technique_dir}/statistical_report/zero_shot_with_no_judge"
 if not os.path.exists(zero_shot_with_no_judge_output_dir):
     # If it does not exist, create it
     os.makedirs(zero_shot_with_no_judge_output_dir)
@@ -270,7 +270,7 @@ generate_statistics_and_plots(zero_shot_with_no_judge_df_list_for_claude, sample
 titles_2_2 = ['GPT-4o-mini - zero_shot_with_no_judge', 'GPT-4o-mini - zero_shot_with_no_judge']
 generate_statistics_and_plots(zero_shot_with_no_judge_df_list_for_gpt, sample_size_list, cols, zero_shot_with_no_judge_output_dir, titles_2_2)
 
-few_shots_with_judge_output_dir = f"/home/jlong1/Downloads/persuasion/Data_n_Code_persuasion/jikailoong/3_evaluation_results/{args.book}/{args.technique_dir}/statistical_report/few_shots_with_judge"
+few_shots_with_judge_output_dir = f"./outputs/3_evaluation_results/{args.book}/{args.technique_dir}/statistical_report/few_shots_with_judge"
 if not os.path.exists(few_shots_with_judge_output_dir):
     # If it does not exist, create it
     os.makedirs(few_shots_with_judge_output_dir)
@@ -279,7 +279,7 @@ generate_statistics_and_plots(few_shots_with_judge_df_list_for_claude, sample_si
 titles_3_2 = ['GPT-4o-mini - few_shots_with_judge', 'GPT-4o-mini - few_shots_with_judge']
 generate_statistics_and_plots(few_shots_with_judge_df_list_for_gpt, sample_size_list, cols, few_shots_with_judge_output_dir, titles_3_2)
 
-few_shots_with_no_judge_output_dir = f"/home/jlong1/Downloads/persuasion/Data_n_Code_persuasion/jikailoong/3_evaluation_results/{args.book}/{args.technique_dir}/statistical_report/few_shots_with_no_judge"
+few_shots_with_no_judge_output_dir = f"./outputs/3_evaluation_results/{args.book}/{args.technique_dir}/statistical_report/few_shots_with_no_judge"
 if not os.path.exists(few_shots_with_no_judge_output_dir):
     # If it does not exist, create it
     os.makedirs(few_shots_with_no_judge_output_dir)
@@ -291,66 +291,66 @@ generate_statistics_and_plots(few_shots_with_no_judge_df_list_for_gpt, sample_si
 '''
 The 5th experiment: data processing
 '''
-# 1. 将四种数据的各自从20个inference_scaling_data文件随机挑出20，15，10，5个文件，画出4×4个dataframe
+# 1. Randomly select 20, 15, 10, 5 files from 20 inference_scaling_data files for each of the four data types, creating 4×4 dataframes
 def merge_random_csv(directory, num_files):
     """
-    随机选择并合并指定数量的CSV文件。
+    Randomly select and merge a specified number of CSV files.
 
-    参数:
-    directory (str): 包含CSV文件的目录路径。
-    num_files (int): 需要合并的CSV文件数量。
+    parameters:
+    directory (str): Directory path containing CSV files.
+    num_files (int): Number of CSV files to merge.
 
-    返回:
-    pandas.DataFrame: 合并后的DataFrame。
+    Returns:
+    pandas.DataFrame: Merged DataFrame.
     """
-    # 设定随机种子，确保每次选择的文件相同
+    # Set random seed to ensure the same files are selected each time
     random.seed(42)  
 
-    # 获取目录中所有的CSV文件
+    # Get all CSV files in the directory
     files = [f for f in os.listdir(directory) if f.endswith('.csv')]
     
-    # 随机选择特定数量的CSV文件
+    # Randomly select a specific number of CSV files
     if len(files) < num_files:
         print("Warning: Requested more files than are available. Using all available files.")
         selected_files = files
     else:
         selected_files = random.sample(files, num_files)
 
-    # 读取并合并CSV文件
+    # Read and merge CSV files
     df_list = [pd.read_csv(os.path.join(directory, file)) for file in selected_files]
     combined_df = pd.concat(df_list, ignore_index=True)
 
     return combined_df
 
-# zero_shot_with_judge inference scaling 20、15、10、5次
-zero_shot_with_judge_inference_scaling_dir = f"/home/jlong1/Downloads/persuasion/Data_n_Code_persuasion/jikailoong/3_evaluation_results/{args.book}/{args.technique_dir}/1_zero_shot_with_judge"
+# zero_shot_with_judge inference scaling 20, 15, 10, 5 times
+zero_shot_with_judge_inference_scaling_dir = f"./outputs/3_evaluation_results/{args.book}/{args.technique_dir}/1_zero_shot_with_judge"
 zero_shot_with_judge_scaling_20_df = merge_random_csv(zero_shot_with_judge_inference_scaling_dir, 20)
 zero_shot_with_judge_scaling_15_df = merge_random_csv(zero_shot_with_judge_inference_scaling_dir, 15)
 zero_shot_with_judge_scaling_10_df = merge_random_csv(zero_shot_with_judge_inference_scaling_dir, 10)
 zero_shot_with_judge_scaling_5_df = merge_random_csv(zero_shot_with_judge_inference_scaling_dir, 5)
 
-# zero_shot_without_judge inference scaling 20、15、10、5次
-zero_shot_without_judge_inference_scaling_dir = f"/home/jlong1/Downloads/persuasion/Data_n_Code_persuasion/jikailoong/3_evaluation_results/{args.book}/{args.technique_dir}/2_zero_shot_without_judge"
+# zero_shot_without_judge inference scaling 20, 15, 10, 5 times
+zero_shot_without_judge_inference_scaling_dir = f"./outputs/3_evaluation_results/{args.book}/{args.technique_dir}/2_zero_shot_without_judge"
 zero_shot_without_judge_scaling_20_df = merge_random_csv(zero_shot_without_judge_inference_scaling_dir, 20)
 zero_shot_without_judge_scaling_15_df = merge_random_csv(zero_shot_without_judge_inference_scaling_dir, 15)
 zero_shot_without_judge_scaling_10_df = merge_random_csv(zero_shot_without_judge_inference_scaling_dir, 10)
 zero_shot_without_judge_scaling_5_df = merge_random_csv(zero_shot_without_judge_inference_scaling_dir, 5)
 
-# few_shots_with_judge inference scaling 20、15、10、5次
-few_shots_with_judge_inference_scaling_dir = f"/home/jlong1/Downloads/persuasion/Data_n_Code_persuasion/jikailoong/3_evaluation_results/{args.book}/{args.technique_dir}/3_few_shots_with_judge"
+# few_shots_with_judge inference scaling 20, 15, 10, 5 times
+few_shots_with_judge_inference_scaling_dir = f"./outputs/3_evaluation_results/{args.book}/{args.technique_dir}/3_few_shots_with_judge"
 few_shots_with_judge_scaling_20_df = merge_random_csv(few_shots_with_judge_inference_scaling_dir, 20)
 few_shots_with_judge_scaling_15_df = merge_random_csv(few_shots_with_judge_inference_scaling_dir, 15)
 few_shots_with_judge_scaling_10_df = merge_random_csv(few_shots_with_judge_inference_scaling_dir, 10)
 few_shots_with_judge_scaling_5_df = merge_random_csv(few_shots_with_judge_inference_scaling_dir, 5)
 
-# few_shots_without_judge inference scaling 20、15、10、5次
-few_shots_without_judge_inference_scaling_dir = f"/home/jlong1/Downloads/persuasion/Data_n_Code_persuasion/jikailoong/3_evaluation_results/{args.book}/{args.technique_dir}/4_few_shots_without_judge"
+# few_shots_without_judge inference scaling 20, 15, 10, 5 times
+few_shots_without_judge_inference_scaling_dir = f"./outputs/3_evaluation_results/{args.book}/{args.technique_dir}/4_few_shots_without_judge"
 few_shots_without_judge_scaling_20_df = merge_random_csv(few_shots_without_judge_inference_scaling_dir, 20)
 few_shots_without_judge_scaling_15_df = merge_random_csv(few_shots_without_judge_inference_scaling_dir, 15)
 few_shots_without_judge_scaling_10_df = merge_random_csv(few_shots_without_judge_inference_scaling_dir, 10)
 few_shots_without_judge_scaling_5_df = merge_random_csv(few_shots_without_judge_inference_scaling_dir, 5)
 
-# 2. 将这十六个dataframe按照模型类别各自分成两个dataframe，目前有4×4×2个dataframe（8个df list）
+# 2. Split these sixteen dataframes into two dataframes each according to model category, currently having 4×4×2 dataframes (8 df lists)
 zero_shot_with_judge_scaling_list = [zero_shot_with_judge_scaling_20_df, zero_shot_with_judge_scaling_15_df, zero_shot_with_judge_scaling_10_df, zero_shot_with_judge_scaling_5_df]
 zero_shot_without_judge_scaling_list = [zero_shot_without_judge_scaling_20_df, zero_shot_without_judge_scaling_15_df, zero_shot_without_judge_scaling_10_df, zero_shot_without_judge_scaling_5_df]
 few_shots_with_judge_scaling_list = [few_shots_with_judge_scaling_20_df, few_shots_with_judge_scaling_15_df, few_shots_with_judge_scaling_10_df, few_shots_with_judge_scaling_5_df]
@@ -433,11 +433,11 @@ def generate_statistics_and_plots_2(df_list, names_list, cols, output_dir, title
         plt.close()
         print(f"Saved plot to {jpg_plot_filename}")
 
-# 1. 将每个dataframe输入函数，得到每个dataframe的平均值，最大值，最小值，中位数，上四分卫数，下四分位数，以及箱线图（箱线图要体现平均数，和original rouge score）
+# 1. Input each dataframe into the function to obtain mean, maximum, minimum, median, upper quartile, lower quartile, and box plots for each dataframe (box plots should display the mean and original rouge score)
 sample_size_list_2 = ["20", "15", "10", "5"]
 cols = ['rouge1_precision', 'rougeL_precision']
 
-zero_shot_with_judge_scaling_output_dir = f"/home/jlong1/Downloads/persuasion/Data_n_Code_persuasion/jikailoong/3_evaluation_results/{args.book}/{args.technique_dir}/statistical_report/inference_scaling/zero_shot_with_judge"
+zero_shot_with_judge_scaling_output_dir = f"./outputs/3_evaluation_results/{args.book}/{args.technique_dir}/statistical_report/inference_scaling/zero_shot_with_judge"
 if not os.path.exists(zero_shot_with_judge_scaling_output_dir):
     # If it does not exist, create it
     os.makedirs(zero_shot_with_judge_scaling_output_dir)
@@ -446,7 +446,7 @@ generate_statistics_and_plots_2(zero_shot_with_judge_scaling_list_for_claude, sa
 titles_1_2 = ['GPT-4o-mini - zero_shot_with_judge', 'GPT-4o-mini - zero_shot_with_judge']
 generate_statistics_and_plots_2(zero_shot_with_judge_scaling_list_for_gpt, sample_size_list_2, cols, zero_shot_with_judge_scaling_output_dir, titles_1_2)
 
-zero_shot_without_judge_scaling_output_dir = f"/home/jlong1/Downloads/persuasion/Data_n_Code_persuasion/jikailoong/3_evaluation_results/{args.book}/{args.technique_dir}/statistical_report/inference_scaling/zero_shot_without_judge"
+zero_shot_without_judge_scaling_output_dir = f"./outputs/3_evaluation_results/{args.book}/{args.technique_dir}/statistical_report/inference_scaling/zero_shot_without_judge"
 if not os.path.exists(zero_shot_without_judge_scaling_output_dir):
     # If it does not exist, create it
     os.makedirs(zero_shot_without_judge_scaling_output_dir)
@@ -455,7 +455,7 @@ generate_statistics_and_plots_2(zero_shot_without_judge_scaling_list_for_claude,
 titles_2_2 = ['GPT-4o-mini - zero_shot_without_judge', 'GPT-4o-mini - zero_shot_without_judge']
 generate_statistics_and_plots_2(zero_shot_without_judge_scaling_list_for_gpt, sample_size_list_2, cols, zero_shot_without_judge_scaling_output_dir, titles_2_2)
 
-few_shots_with_judge_scaling_output_dir = f"/home/jlong1/Downloads/persuasion/Data_n_Code_persuasion/jikailoong/3_evaluation_results/{args.book}/{args.technique_dir}/statistical_report/inference_scaling/few_shots_with_judge"
+few_shots_with_judge_scaling_output_dir = f"./outputs/3_evaluation_results/{args.book}/{args.technique_dir}/statistical_report/inference_scaling/few_shots_with_judge"
 if not os.path.exists(few_shots_with_judge_scaling_output_dir):
     # If it does not exist, create it
     os.makedirs(few_shots_with_judge_scaling_output_dir)
@@ -464,7 +464,7 @@ generate_statistics_and_plots_2(few_shots_with_judge_scaling_list_for_claude, sa
 titles_3_2 = ['GPT-4o-mini - few_shots_with_judge', 'GPT-4o-mini - few_shots_with_judge']
 generate_statistics_and_plots_2(few_shots_with_judge_scaling_list_for_gpt, sample_size_list_2, cols, few_shots_with_judge_scaling_output_dir, titles_3_2)
 
-few_shots_without_judge_scaling_output_dir = f"/home/jlong1/Downloads/persuasion/Data_n_Code_persuasion/jikailoong/3_evaluation_results/{args.book}/{args.technique_dir}/statistical_report/inference_scaling/few_shots_without_judge"
+few_shots_without_judge_scaling_output_dir = f"./outputs/3_evaluation_results/{args.book}/{args.technique_dir}/statistical_report/inference_scaling/few_shots_without_judge"
 if not os.path.exists(few_shots_without_judge_scaling_output_dir):
     # If it does not exist, create it
     os.makedirs(few_shots_without_judge_scaling_output_dir)

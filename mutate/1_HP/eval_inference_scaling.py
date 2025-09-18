@@ -9,7 +9,7 @@ parser.add_argument('--book', type=str, help='select the book')
 parser.add_argument('--technique', type=str, help='select the technique')
 args = parser.parse_args()
 
-eva_result_dir = f"""/home/jlong1/Downloads/persuasion/Data_n_Code_persuasion/jikailoong/3_evaluation_results/{args.book}/{args.technique}"""
+eva_result_dir = f"""./outputs/3_evaluation_results/{args.book}/{args.technique}"""
 
 '''
 

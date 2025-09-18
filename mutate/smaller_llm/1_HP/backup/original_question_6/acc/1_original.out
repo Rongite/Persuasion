@@ -1,8 +1,0 @@
-claude-3-haiku-20240307 Original Scores 
-rouge1_precision:  0.801527 
-rougeL_precision:  0.801527
-gpt-4o-mini Original Scores 
-rouge1_precision:  0.314286 
-rougeL_precision:  0.171429
-Total evaluation time: 0.17 minutes
-Evaluation complete. Results saved to 'original_question_6.csv'.

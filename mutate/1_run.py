@@ -98,12 +98,12 @@ if __name__ == "__main__":
 
     # 1. directories: 6 directories
     directories = [
-        f"""/home/jlong1/Downloads/persuasion/Data_n_Code_persuasion/single_mutations/{args.book}/original_question_1""",
-        f"""/home/jlong1/Downloads/persuasion/Data_n_Code_persuasion/single_mutations/{args.book}/original_question_2""",
-        f"""/home/jlong1/Downloads/persuasion/Data_n_Code_persuasion/single_mutations/{args.book}/original_question_3""",
-        f"""/home/jlong1/Downloads/persuasion/Data_n_Code_persuasion/single_mutations/{args.book}/original_question_4""",
-        f"""/home/jlong1/Downloads/persuasion/Data_n_Code_persuasion/single_mutations/{args.book}/original_question_5""",
-        f"""/home/jlong1/Downloads/persuasion/Data_n_Code_persuasion/single_mutations/{args.book}/original_question_6"""
+        f"""./mutate/{args.book}/original_question_1""",
+        f"""./mutate/{args.book}/original_question_2""",
+        f"""./mutate/{args.book}/original_question_3""",
+        f"""./mutate/{args.book}/original_question_4""",
+        f"""./mutate/{args.book}/original_question_5""",
+        f"""./mutate/{args.book}/original_question_6"""
     ]
 
     # 2. script_sequence => list of (script_name, auto_repeat)
@@ -118,9 +118,7 @@ if __name__ == "__main__":
         ("7_few_shots_without_judge.py", False),
         ("8_eval_few_shots_without_judge.py", False),
     ]
-    '''
-    modify
-    '''
+    # Configuration section
     # 3. script_args_map => if you want to pass arguments to certain scripts
     script_args_map = {
         "1_zero_shot_with_judge.py": ["--book", f"{args.book}", "--technique", f"{args.technique}", "--technique_dir", f"{args.technique_dir}"],
@@ -138,20 +136,20 @@ if __name__ == "__main__":
     #    scriptA uses csv_files_A, scriptC uses csv_files_B, etc.
     script_csv_map = {
         "1_zero_shot_with_judge.py": [
-            f"""/home/jlong1/Downloads/persuasion/Data_n_Code_persuasion/jikailoong/2_persuasion_prompts/{args.book}/{args.technique_dir}/1_zero_shot_with_judge.csv""",
-            f"""/home/jlong1/Downloads/persuasion/Data_n_Code_persuasion/jikailoong/2_persuasion_prompts/{args.book}/{args.technique_dir}/2_zero_shot_with_judge.csv""",
-            f"""/home/jlong1/Downloads/persuasion/Data_n_Code_persuasion/jikailoong/2_persuasion_prompts/{args.book}/{args.technique_dir}/3_zero_shot_with_judge.csv""",
-            f"""/home/jlong1/Downloads/persuasion/Data_n_Code_persuasion/jikailoong/2_persuasion_prompts/{args.book}/{args.technique_dir}/4_zero_shot_with_judge.csv""",
-            f"""/home/jlong1/Downloads/persuasion/Data_n_Code_persuasion/jikailoong/2_persuasion_prompts/{args.book}/{args.technique_dir}/5_zero_shot_with_judge.csv""",
-            f"""/home/jlong1/Downloads/persuasion/Data_n_Code_persuasion/jikailoong/2_persuasion_prompts/{args.book}/{args.technique_dir}/6_zero_shot_with_judge.csv"""
+            f"""./outputs/2_persuasion_prompts/{args.book}/{args.technique_dir}/1_zero_shot_with_judge.csv""",
+            f"""./outputs/2_persuasion_prompts/{args.book}/{args.technique_dir}/2_zero_shot_with_judge.csv""",
+            f"""./outputs/2_persuasion_prompts/{args.book}/{args.technique_dir}/3_zero_shot_with_judge.csv""",
+            f"""./outputs/2_persuasion_prompts/{args.book}/{args.technique_dir}/4_zero_shot_with_judge.csv""",
+            f"""./outputs/2_persuasion_prompts/{args.book}/{args.technique_dir}/5_zero_shot_with_judge.csv""",
+            f"""./outputs/2_persuasion_prompts/{args.book}/{args.technique_dir}/6_zero_shot_with_judge.csv"""
         ],
         "5_few_shots_with_judge.py": [
-            f"""/home/jlong1/Downloads/persuasion/Data_n_Code_persuasion/jikailoong/2_persuasion_prompts/{args.book}/{args.technique_dir}/1_few_shots_with_judge.csv""",
-            f"""/home/jlong1/Downloads/persuasion/Data_n_Code_persuasion/jikailoong/2_persuasion_prompts/{args.book}/{args.technique_dir}/2_few_shots_with_judge.csv""",
-            f"""/home/jlong1/Downloads/persuasion/Data_n_Code_persuasion/jikailoong/2_persuasion_prompts/{args.book}/{args.technique_dir}/3_few_shots_with_judge.csv""",
-            f"""/home/jlong1/Downloads/persuasion/Data_n_Code_persuasion/jikailoong/2_persuasion_prompts/{args.book}/{args.technique_dir}/4_few_shots_with_judge.csv""",
-            f"""/home/jlong1/Downloads/persuasion/Data_n_Code_persuasion/jikailoong/2_persuasion_prompts/{args.book}/{args.technique_dir}/5_few_shots_with_judge.csv""",
-            f"""/home/jlong1/Downloads/persuasion/Data_n_Code_persuasion/jikailoong/2_persuasion_prompts/{args.book}/{args.technique_dir}/6_few_shots_with_judge.csv"""
+            f"""./outputs/2_persuasion_prompts/{args.book}/{args.technique_dir}/1_few_shots_with_judge.csv""",
+            f"""./outputs/2_persuasion_prompts/{args.book}/{args.technique_dir}/2_few_shots_with_judge.csv""",
+            f"""./outputs/2_persuasion_prompts/{args.book}/{args.technique_dir}/3_few_shots_with_judge.csv""",
+            f"""./outputs/2_persuasion_prompts/{args.book}/{args.technique_dir}/4_few_shots_with_judge.csv""",
+            f"""./outputs/2_persuasion_prompts/{args.book}/{args.technique_dir}/5_few_shots_with_judge.csv""",
+            f"""./outputs/2_persuasion_prompts/{args.book}/{args.technique_dir}/6_few_shots_with_judge.csv"""
         ]
         # scripts B and D do not auto-repeat, so we can skip
     }

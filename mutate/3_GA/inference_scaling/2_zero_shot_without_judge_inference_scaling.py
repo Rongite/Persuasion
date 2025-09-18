@@ -17,10 +17,8 @@ parser.add_argument('--technique', type=str, help='select the technique')
 args = parser.parse_args()
 
 # Load valid mutations from the CSV file
-valid_mutations_dir = f'/home/jlong1/Downloads/persuasion/Data_n_Code_persuasion/jikailoong/2_persuasion_prompts/{args.book}/{args.technique_dir}'
-'''
-modify
-'''
+valid_mutations_dir = f'./outputs/2_persuasion_prompts/{args.book}/{args.technique_dir}'
+# Configuration section
 valid_mutation_subname = 'zero_shot_with_no_judge'
 valid_mutatioin_file_list = []
 for dirpath, dirnames, filenames in os.walk(valid_mutations_dir):
@@ -35,9 +33,10 @@ valid_mutations_df = all_valid_mutations_df.sample(n=60, random_state=1).reset_i
 
 # Initialize OpenAI, Anthropic, and Replicate clients
 openai_client = OpenAI(
-    # api_key = 'sk-eYvV5PulUcRh5gX40d10873c274b41C3B596F4F1F06e1a34', # office
-    api_key = 'sk-eWSYPo0CvhRYgcJs55B0C3F00aC74f6e95F47c1f4772292c', # my
-    base_url = "https://api2.aigcbest.top/v1"
+    # TODO: Add your OpenAI API key here
+    # api_key="your_openai_api_key_here",
+    # TODO: Add your base URL here if using a different endpoint
+    # base_url="your_base_url_here"
 )
 
 # Function to evaluate a mutated text against the reference answer using `rouge-score`
@@ -211,11 +210,8 @@ def evaluate_mutations_from_valid_csv(models):
 # Define the list of models to evaluate
 models = ["claude-3-haiku-20240307", "gpt-4o-mini"] 
 # models = ["claude-3-haiku-20240307"] 
-
-'''
-modify
-'''
-checkpoint_dir = f"/home/jlong1/Downloads/persuasion/Data_n_Code_persuasion/jikailoong/3_evaluation_results/{args.book}/{args.technique_dir}/2_zero_shot_without_judge"
+# Configuration section
+checkpoint_dir = f"./outputs/3_evaluation_results/{args.book}/{args.technique_dir}/2_zero_shot_without_judge"
 if not os.path.exists(checkpoint_dir):
     # If it does not exist, create it
     os.makedirs(checkpoint_dir)
@@ -224,10 +220,8 @@ if not os.path.exists(checkpoint_dir):
 for i in range(20):
     index = i + 1
     print("round", i+1)
-    '''
-    modify
-    '''
-    checkpoint_file = f"/home/jlong1/Downloads/persuasion/Data_n_Code_persuasion/jikailoong/3_evaluation_results/{args.book}/{args.technique_dir}/2_zero_shot_without_judge/{index}_inference_scaling.csv"
+# Configuration section
+    checkpoint_file = f"./outputs/3_evaluation_results/{args.book}/{args.technique_dir}/2_zero_shot_without_judge/{index}_inference_scaling.csv"
 
     evaluate_mutations_from_valid_csv(models)
 
@@ -237,7 +231,7 @@ for i in range(20):
 #     '''
 #     modify
 #     '''
-#     checkpoint_file = f"/home/jlong1/Downloads/persuasion/Data_n_Code_persuasion/jikailoong/3_evaluation_results/{args.book}/{args.technique_dir}/2_zero_shot_without_judge/{index}_inference_scaling.csv"
+#     checkpoint_file = f"./outputs/3_evaluation_results/{args.book}/{args.technique_dir}/2_zero_shot_without_judge/{index}_inference_scaling.csv"
 
 #     evaluate_mutations_from_valid_csv(models)
 
