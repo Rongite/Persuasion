@@ -285,7 +285,7 @@ If you find it useful, please cite our EMNLP 2025 paper:
                Shenglan Li and
                Zhaozhuo Xu and
                Denghui Zhang},
-  title     = {Persuasion-based Prompt Attacks: A Workflow for {LLM} Copyright Violation Assessment},
+  title     = {Profiling LLM's Copyright Infringement Risks under Adversarial Persuasive Prompting},
   booktitle = {Findings of the Association for Computational Linguistics: {EMNLP} 2025}
 }
 ```
