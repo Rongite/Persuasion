@@ -132,34 +132,9 @@ Output the result in the following format:
 
 ## How to Run the Complete Pipeline
 
-### Step 1: Run Individual Experiments
+### Method 1: Complete Pipeline (Recommended)
 
-For a single technique on a specific book:
-
-```bash
-# Example: Run "Ethos" technique on Harry Potter
-cd mutate/1_HP/original_question_1
-python 1_zero_shot_with_judge.py --book "1_HP" --technique_dir "1_Ethos" --technique "Ethos"
-```
-
-### Step 2: Run Single Technique Analysis
-
-To run a complete analysis for one technique on one book:
-
-```bash
-# Run complete analysis for Ethos technique on Harry Potter
-python mutate/1_run.py --book "1_HP" --technique "Ethos" --technique_dir "1_Ethos"
-
-# Run complete analysis for Foot-in-the-Door technique on The Hobbit
-python mutate/1_run.py --book "2_HB" --technique "Foot-in-the-Door" --technique_dir "16_Foot-in-the-Door"
-
-# Run complete analysis for Storytelling technique on Game of Thrones
-python mutate/1_run.py --book "3_GA" --technique "Storytelling" --technique_dir "9_Storytelling"
-```
-
-### Step 3: Run Pipeline Orchestrator
-
-To run the complete 3-stage pipeline for a specific technique:
+To run the complete 3-stage pipeline for a specific technique on one book:
 
 ```bash
 # Run complete pipeline for Ethos technique on Harry Potter
@@ -167,21 +142,53 @@ python mutate/0_main_controller.py --book "1_HP" --technique "Ethos" --technique
 
 # Run complete pipeline for Alliance Building technique on The Hobbit
 python mutate/0_main_controller.py --book "2_HB" --technique "Alliance Building" --technique_dir "2_Alliance_Building"
+
+# Run complete pipeline for Foot-in-the-Door technique on Game of Thrones
+python mutate/0_main_controller.py --book "3_GA" --technique "Foot-in-the-Door" --technique_dir "16_Foot-in-the-Door"
 ```
 
-**The orchestrator runs:**
+**The orchestrator automatically runs:**
 1. **Stage 1**: Core mutation and evaluation experiments (`1_run.py`)
 2. **Stage 2**: Inference scaling analysis (`2_inference_scaling_all.py`)
 3. **Stage 3**: Statistical analysis and visualization (`3_data_statistics.py`)
 
-### Step 4: Generate Statistical Reports
+### Method 2: Manual Step-by-Step Execution
 
-To analyze results and generate visualizations:
+If you want to run each stage manually for better control:
 
+#### Step 1: Core Mutation and Evaluation Experiments
 ```bash
-# Generate statistics for specific book/technique
+# Run all 8 stages for all 6 questions of one technique
+python mutate/1_run.py --book "1_HP" --technique "Ethos" --technique_dir "1_Ethos"
+```
+
+#### Step 2: Inference Scaling Analysis
+```bash
+# Run inference scaling experiments (multiple rounds)
+python mutate/2_inference_scaling_all.py --book "1_HP" --technique "Ethos" --technique_dir "1_Ethos"
+```
+
+#### Step 3: Statistical Analysis and Visualization
+```bash
+# Generate statistical reports and visualizations
 python mutate/3_data_statistics.py --book "1_HP" --technique "Ethos" --technique_dir "1_Ethos"
 ```
+
+### Method 3: Individual Script Execution (Advanced)
+
+For debugging or specific testing, you can run individual scripts:
+
+```bash
+# Example: Run only the first stage for question 1
+cd mutate/1_HP/original_question_1
+python 1_zero_shot_with_judge.py --book "1_HP" --technique_dir "1_Ethos" --technique "Ethos"
+
+# Example: Run only evaluation for question 2
+cd mutate/1_HP/original_question_2
+python 2_eval_zero_shot_with_judge.py --book "1_HP" --technique_dir "1_Ethos" --technique "Ethos"
+```
+
+**Note**: Method 3 only runs partial experiments and won't give you complete results for a technique.
 
 ### Available Persuasion Techniques
 
