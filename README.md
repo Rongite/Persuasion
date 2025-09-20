@@ -137,32 +137,36 @@ Output the result in the following format:
 For a single technique on a specific book:
 
 ```bash
-# Example: Run "Ethos" technique on Harry Potter, question 1
+# Example: Run "Ethos" technique on Harry Potter
 cd mutate/1_HP/original_question_1
-python 1_zero_shot_with_judge.py --book "1_HP" --technique_dir "original_question_1" --technique "Ethos"
+python 1_zero_shot_with_judge.py --book "1_HP" --technique_dir "1_Ethos" --technique "Ethos"
 ```
 
-### Step 2: Run Full Book Analysis
+### Step 2: Run Single Technique Analysis
 
-To run all techniques for all 6 questions in a book:
+To run a complete analysis for one technique on one book:
 
 ```bash
-# Run complete analysis for Harry Potter
-python mutate/1_run.py --book "1_HP"
+# Run complete analysis for Ethos technique on Harry Potter
+python mutate/1_run.py --book "1_HP" --technique "Ethos" --technique_dir "1_Ethos"
 
-# Run complete analysis for The Hobbit
-python mutate/1_run.py --book "2_HB"
+# Run complete analysis for Foot-in-the-Door technique on The Hobbit
+python mutate/1_run.py --book "2_HB" --technique "Foot-in-the-Door" --technique_dir "16_Foot-in-the-Door"
 
-# Run complete analysis for Game of Thrones
-python mutate/1_run.py --book "3_GA"
+# Run complete analysis for Storytelling technique on Game of Thrones
+python mutate/1_run.py --book "3_GA" --technique "Storytelling" --technique_dir "9_Storytelling"
 ```
 
 ### Step 3: Run Pipeline Orchestrator
 
-To run the complete 3-stage pipeline for all books:
+To run the complete 3-stage pipeline for a specific technique:
 
 ```bash
-python mutate/0_main_controller.py
+# Run complete pipeline for Ethos technique on Harry Potter
+python mutate/0_main_controller.py --book "1_HP" --technique "Ethos" --technique_dir "1_Ethos"
+
+# Run complete pipeline for Alliance Building technique on The Hobbit
+python mutate/0_main_controller.py --book "2_HB" --technique "Alliance Building" --technique_dir "2_Alliance_Building"
 ```
 
 **The orchestrator runs:**
@@ -176,7 +180,46 @@ To analyze results and generate visualizations:
 
 ```bash
 # Generate statistics for specific book/technique
-python mutate/3_data_statistics.py --book "1_HP" --technique_dir "original_question_1" --technique "Ethos"
+python mutate/3_data_statistics.py --book "1_HP" --technique "Ethos" --technique_dir "1_Ethos"
+```
+
+### Available Persuasion Techniques
+
+The following 14 persuasion techniques are available:
+
+1. **Ethos** (technique_dir: `1_Ethos`)
+2. **Alliance Building** (technique_dir: `2_Alliance_Building`)
+3. **Relationship Leverages** (technique_dir: `3_Relationship_Leverages`)
+4. **Loyalty Appeals** (technique_dir: `4_Loyalty_Appeals`)
+5. **Affirmation** (technique_dir: `5_Affirmation`)
+6. **Logos** (technique_dir: `6_Logos`)
+7. **Negotiation** (technique_dir: `7_Negotiation`)
+8. **Pathos** (technique_dir: `8_Pathos`)
+9. **Storytelling** (technique_dir: `9_Storytelling`)
+10. **Encouragement** (technique_dir: `10_Encouragement`)
+11. **Positive Motivation** (technique_dir: `11_Positive_Motivation`)
+12. **Negative Motivation** (technique_dir: `12_Negative_Motivation`)
+13. **Safety Needs** (technique_dir: `13_Safety_Needs`)
+14. **Foot-in-the-Door** (technique_dir: `16_Foot-in-the-Door`)
+
+### Run All Techniques (Complete Experiment)
+
+To run all 14 techniques for all 3 books (42 total experiments):
+
+```bash
+# Define arrays of books and techniques
+books=("1_HP" "2_HB" "3_GA")
+techniques=("Ethos:1_Ethos" "Alliance Building:2_Alliance_Building" "Relationship Leverages:3_Relationship_Leverages" "Loyalty Appeals:4_Loyalty_Appeals" "Affirmation:5_Affirmation" "Logos:6_Logos" "Negotiation:7_Negotiation" "Pathos:8_Pathos" "Storytelling:9_Storytelling" "Encouragement:10_Encouragement" "Positive Motivation:11_Positive_Motivation" "Negative Motivation:12_Negative_Motivation" "Safety Needs:13_Safety_Needs" "Foot-in-the-Door:16_Foot-in-the-Door")
+
+# Run all combinations
+for book in "${books[@]}"; do
+    for technique_pair in "${techniques[@]}"; do
+        technique_name="${technique_pair%%:*}"
+        technique_dir="${technique_pair##*:}"
+        echo "Running: $book - $technique_name"
+        python mutate/0_main_controller.py --book "$book" --technique "$technique_name" --technique_dir "$technique_dir"
+    done
+done
 ```
 
 ## Experimental Pipeline Details
